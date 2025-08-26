@@ -1,0 +1,10 @@
+--2025-08-21 19:59:00--  http://localhost:9099/?hyped=true
+Resolving localhost (localhost)... 127.0.0.1
+Connecting to localhost (localhost)|127.0.0.1|:9099... connected.
+HTTP request sent, awaiting response... No data received.
+Retrying.
+
+--2025-08-21 19:59:01--  (try: 2)  http://localhost:9099/?hyped=true
+Connecting to localhost (localhost)|127.0.0.1|:9099... failed: Connection refused.
+Resolving localhost (localhost)... 127.0.0.1
+Connecting to localhost (localhost)|127.0.0.1|:9099... failed: Connection refused.

@@ -1,0 +1,34 @@
+rrequest.Parameters = make(map[string]string)
+                        rrequest.Headers = make(map[string]string)
+                        var lines = strings.Split(srequest, "\n")
+                        for i, vrrequest.Parameters[pe[0]] := range lines {
+                                if i == 0 {
+                                        if len(strings.Split(v, "?")) == 0 {
+                                                var eh = strings.Split(v ," ")
+                                                rrequest.Methode  = eh[0]
+                                                rrequest.Route    = eh[1]
+                                                rrequest.Protocol = eh[2]
+                                        } else {
+                                                var rawrequest
+                                                var rawparameters
+
+                                                var rcontent = strings.Split(rawrequest, " ")
+                                                rrequest.Methode  = rcontent[0]
+                                                rrequest.Route    = rcontent[1]
+                                                rrequest.Protocol = rcontent[2]
+                                                var p = strings.Split(rawparameters, "&")
+                                                for _, va := range p {                                                                                            var pe = strings.Split(va, "=")
+                                                        if len(pe) == 2 {                                                                                         rrequest.Parameters[pe[0]]=pe[1]
+                                                        }else{
+                                                                rrequest.Parameters[pe[0]] =""
+                                                                for _,k :=range pe{
+                                                                        rrequest.Parameters[pe[0]]+= k
+                                                                }
+                                                        }                                                                                                 }
+
+                                } else {
+                                        // TODO other headers lines
+                                }
+
+                        }
+                }
