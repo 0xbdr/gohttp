@@ -1,8 +1,0 @@
-read -p "executable name ~> " filename
-ls -a
-read -p "go files to build ~> " answer
-echo building code using :
-echo ${filename} output executable name
-echo ${answer} files to build
-echo building ${1}
-go build -o bin/${filename} ${answer} 
