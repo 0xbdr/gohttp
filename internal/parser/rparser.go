@@ -1,10 +1,11 @@
-package main
+package parser
 
 import (
 	"bufio"
 	"errors"
 	"net"
 	"strings"
+	"internal"
 )
 
 type request struct {
@@ -24,7 +25,7 @@ func parserequest(client net.Conn) (request, error) {
 	var line []byte
 	for {
 		line, _, err = reader.ReadLine()
-		check(err)
+		checkerr(err)
 		if string(line) != "" {
 			srequest += string(line) + "\n"
 		} else {
@@ -88,6 +89,5 @@ func parserequest(client net.Conn) (request, error) {
 			}
 		}
 	}
-	//TODO REQUEST BODY
 	return rrequest, err
 }
