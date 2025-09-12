@@ -3,9 +3,11 @@ package parser
 import (
 	"bufio"
 	"errors"
+	"fmt"
+	"gohttp/internal/httpenums"
 	"net"
+	"strconv"
 	"strings"
-	"internal"
 )
 
 type request struct {
@@ -14,18 +16,22 @@ type request struct {
 	Protocol   string
 	Parameters map[string]string
 	Headers    map[string]string
-	Body       []byte
+	binBody    []byte
+	textBody   string
 }
 
 func parserequest(client net.Conn) (request, error) {
 	var reader = bufio.NewReader(client)
-	var rrequest = request{"", "", "", nil, nil, nil}
+	var rrequest = request{"", "", "", nil, nil, nil,""}
 	var srequest string
 	var err error
 	var line []byte
 	for {
 		line, _, err = reader.ReadLine()
-		checkerr(err)
+		if err != nil {
+			fmt.Println(err.Error())
+			return request{},errors.New("error reading from client")
+		}
 		if string(line) != "" {
 			srequest += string(line) + "\n"
 		} else {
@@ -89,5 +95,25 @@ func parserequest(client net.Conn) (request, error) {
 			}
 		}
 	}
-	return rrequest, err
+	if rrequest.Headers["Content-Length"] != ""{
+		var clent string = rrequest.Headers["Content-Length"]
+		var clen,_= strconv.Atoi(clent)
+		var c []byte = make([]byte,clen)
+
+		var read ,err = client.Read(c)
+		if err != nil{
+			fmt.Println(err.Error())
+			return request{},errors.New("error reading frol client")
+		}
+		fmt.Println(read)
+		fmt.Println(clen)
+		var ctype httpenums.ContentType = httpenums.ContentType(rrequest.Headers["Content-Type"])
+		if ctype.IsText(){
+			rrequest.textBody = string(c)
+		}else if ctype.IsBinary(){
+			rrequest.binBody = c
+		}
+		
+	}
+return rrequest, err
 }

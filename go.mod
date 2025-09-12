@@ -1,3 +1,3 @@
-module github.com/0xbdr/wserver
+module gohttp
 
 go 1.24.5
