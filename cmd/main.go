@@ -17,7 +17,7 @@ func check(err error) {
 
 func main() {
 
-	fmt.Println("wserver goversion arm build")
+	fmt.Println("starting")
 
 	var server, err = net.Listen("tcp", ":9099")
 	check(err)
