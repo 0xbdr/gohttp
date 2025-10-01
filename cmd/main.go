@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"gohttp/internal/httpenums"
 	"gohttp/internal/parser"
 	"net"
 	"os"
@@ -32,7 +31,8 @@ func main() {
 	}
 }
 func handlec(client net.Conn) {
-	var trequest, err = parser.parserequest(client)
+	var trequest, err = parser.Parserequest(client)
+	fmt.Println(trequest)
 	check(err)
 	fmt.Println(trequest)
 

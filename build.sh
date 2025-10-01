@@ -1,4 +1,3 @@
-echo building gohttp $(cat version) ...
+echo Building project ...
 go version
-echo current directory $(basename $(pwd))
-go build -o bin/gohttp cmd/*.go internal/parser/*.go 
+go build -o bin/gohttp cmd/main.go

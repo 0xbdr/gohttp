@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-type request struct {
+type Request struct {
 	Method     string
 	Route      string
 	Protocol   string
@@ -20,9 +20,9 @@ type request struct {
 	textBody   string
 }
 
-func parserequest(client net.Conn) (request, error) {
+func Parserequest(client net.Conn) (Request, error) {
 	var reader = bufio.NewReader(client)
-	var rrequest = request{"", "", "", nil, nil, nil,""}
+	var rrequest = Request{"", "", "", nil, nil, nil,""}
 	var srequest string
 	var err error
 	var line []byte
@@ -30,7 +30,7 @@ func parserequest(client net.Conn) (request, error) {
 		line, _, err = reader.ReadLine()
 		if err != nil {
 			fmt.Println(err.Error())
-			return request{},errors.New("error reading from client")
+			return Request{},errors.New("error reading from client")
 		}
 		if string(line) != "" {
 			srequest += string(line) + "\n"
@@ -45,7 +45,7 @@ func parserequest(client net.Conn) (request, error) {
 	var rawrequest string = lines[0]
 	var rparts = strings.Split(rawrequest, " ")
 	if len(rparts) != 3 {
-		return request{}, errors.New("Bad request")
+		return Request{}, errors.New("Bad request")
 	}
 	rrequest.Method = rparts[0]
 	rrequest.Protocol = rparts[2]
@@ -90,7 +90,7 @@ func parserequest(client net.Conn) (request, error) {
 				if len(ss) == 2 {
 					rrequest.Headers[header] = ss[1]
 				} else {
-					return request{}, errors.New("error reading headers")
+					return Request{}, errors.New("error reading headers")
 				}
 			}
 		}
@@ -103,7 +103,7 @@ func parserequest(client net.Conn) (request, error) {
 		var read ,err = client.Read(c)
 		if err != nil{
 			fmt.Println(err.Error())
-			return request{},errors.New("error reading frol client")
+			return Request{},errors.New("error reading frol client")
 		}
 		fmt.Println(read)
 		fmt.Println(clen)
