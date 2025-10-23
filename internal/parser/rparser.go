@@ -111,7 +111,7 @@ func Parserequest(client net.Conn) (Request, error) {
 		if ctype.IsText(){
 			rrequest.textBody = string(c)
 		}else if ctype.IsBinary(){
-			rrequest.binBody = c
+			rrequest.binBody = c 
 		}
 		
 	}

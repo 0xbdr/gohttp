@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"gohttp/internal/parser"
+	"hyperttps/internal/httpenums"
+	"hyperttps/internal/parser"
 	"net"
 	"os"
 )
@@ -18,7 +19,7 @@ func main() {
 
 	fmt.Println("starting")
 
-	var server, err = net.Listen("tcp", ":9099")
+	var server, err = net.Listen("tcp", ":8080")
 	check(err)
 	fmt.Println("Server started")
 	for {
@@ -31,9 +32,11 @@ func main() {
 	}
 }
 func handlec(client net.Conn) {
-	var trequest, err = parser.Parserequest(client)
-	fmt.Println(trequest)
+	var rrequest, err = parser.Parserequest(client)
+	fmt.Println(rrequest)
 	check(err)
-	fmt.Println(trequest)
+	fmt.Println(rrequest)
+	if rrequest.Method == string(httpenums.GET){
 
+	}
 }
