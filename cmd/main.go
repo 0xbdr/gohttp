@@ -37,6 +37,6 @@ func handlec(client net.Conn) {
 	check(err)
 	fmt.Println(rrequest)
 	if rrequest.Method == string(httpenums.GET){
-
+		
 	}
 }
