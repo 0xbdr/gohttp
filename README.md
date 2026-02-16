@@ -1,2 +1,3 @@
 # gohttp
-A real http server this time using go
+release delayed to 2027 
+with more expected delays for sure
